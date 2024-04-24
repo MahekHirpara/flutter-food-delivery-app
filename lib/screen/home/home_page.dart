@@ -12,10 +12,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var selectedIndex=0;
   List page=[
-    MainFoodPage(),
-    Container(child: Center(child: Text('next page'),),),
-    Container(child: Center(child: Text('next next page'),),),
-    Container(child: Center(child: Text('next next next page'),),)
+    const MainFoodPage(),
+    Container(child: const Center(child: Text('next page'),),),
+    Container(child: const Center(child: Text('next next page'),),),
+    Container(child: const Center(child: Text('next next next page'),),)
   ];
   void onTapNav(int index){
   setState(() {

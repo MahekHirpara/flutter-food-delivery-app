@@ -5,7 +5,7 @@ import 'package:food_app/widgets/small_text.dart';
 
 class ExpendedText extends StatefulWidget {
   final String text;
-  const ExpendedText({Key? key, required this.text}) : super(key: key);
+  const ExpendedText({super.key, required this.text});
 
   @override
   State<ExpendedText> createState() => _ExpendedTextState();
@@ -44,7 +44,7 @@ class _ExpendedTextState extends State<ExpendedText> {
               size: Demensions.font18,
               color: AppColors.paraColor,
               text: hiddenText
-                  ? (fristHalf + '...')
+                  ? ('$fristHalf...')
                   : fristHalf + secondHalf),
           InkWell(
             onTap: () {

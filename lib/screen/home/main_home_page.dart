@@ -7,7 +7,7 @@ import 'package:food_app/widgets/small_text.dart';
 
 
 class MainFoodPage extends StatefulWidget {
-  const MainFoodPage({Key? key}) : super(key: key);
+  const MainFoodPage({super.key});
 
   @override
   State<MainFoodPage> createState() => _MainFoodPageState();
@@ -22,8 +22,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
         children: [
           Container(
             child: Container(
-              margin: EdgeInsets.only(top: 45, bottom: 15),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(top: 45, bottom: 15),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -36,7 +36,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       Row(
                         children: [
                           SmallText(text: 'Surat'),
-                          Icon(Icons.arrow_drop_down_rounded),
+                          const Icon(Icons.arrow_drop_down_rounded),
                         ],
                       ),
                     ],
@@ -61,7 +61,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
-          Expanded(child: SingleChildScrollView(child: MainPageBody())),
+          const Expanded(child: SingleChildScrollView(child: MainPageBody())),
         ],
       ),
     );

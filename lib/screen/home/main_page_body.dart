@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 
 
 class MainPageBody extends StatefulWidget {
-  const MainPageBody({Key? key}) : super(key: key);
+  const MainPageBody({super.key});
 
   @override
   State<MainPageBody> createState() => _MainPageBodyState();
@@ -24,8 +24,8 @@ class MainPageBody extends StatefulWidget {
 class _MainPageBodyState extends State<MainPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentvalue = 0.0;
-  var _scalFactor = 0.8;
-  var _height = Demensions.pageViewContainer;
+  final _scalFactor = 0.8;
+  final _height = Demensions.pageViewContainer;
   @override
   void initState() {
     super.initState();
@@ -50,7 +50,7 @@ class _MainPageBodyState extends State<MainPageBody> {
         GetBuilder<PopulerFoodController>(
           builder: (popularProduct) {
             return popularProduct.isLoaded
-                ? Container(
+                ? SizedBox(
               height: Demensions.pageContainer,
               child: PageView.builder(
                 controller: pageController,
@@ -61,7 +61,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                 },
               ),
             )
-                : CircularProgressIndicator();
+                : const CircularProgressIndicator();
           },
         ),
 
@@ -120,7 +120,7 @@ class _MainPageBodyState extends State<MainPageBody> {
           builder: (recommededProduct) {
             return recommededProduct.isLoaded
                 ? ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: recommededProduct.recomededproductList.length,
               itemBuilder: (context, index) {
@@ -144,8 +144,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                   Demensions.radius15),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(AppConstant.BASE_URL +
-                                    '/uploads/' +
+                                image: NetworkImage('${AppConstant.BASE_URL}/uploads/' +
                                     recommededProduct
                                         .recomededproductList[index]
                                         .img!),
@@ -163,7 +162,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                 bottomRight:
                                 Radius.circular(Demensions.radius15),
                               ),
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   color: Color(0xFFe8e8e8),
                                   blurRadius: 5,
@@ -195,7 +194,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                   ),
                                   Row(
                                     children: [
-                                      IconwithText(
+                                      const IconwithText(
                                         icon: Icons.circle_sharp,
                                         iconColor: AppColors.iconColor1,
                                         text: 'Normal',
@@ -203,7 +202,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                       SizedBox(
                                         width: Demensions.width5,
                                       ),
-                                      IconwithText(
+                                      const IconwithText(
                                         icon: Icons.location_on,
                                         iconColor: AppColors.maincolor,
                                         text: '7.3km',
@@ -211,7 +210,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                                       SizedBox(
                                         width: Demensions.width5,
                                       ),
-                                      IconwithText(
+                                      const IconwithText(
                                         icon: Icons
                                             .access_time_filled_rounded,
                                         iconColor: AppColors.iconColor2,
@@ -230,7 +229,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                 );
               },
             )
-                : CircularProgressIndicator();
+                : const CircularProgressIndicator();
           },
         ),
       ],
@@ -238,7 +237,7 @@ class _MainPageBodyState extends State<MainPageBody> {
   }
 
   Widget _buildPageItem(int index, ProductModal popularProduct) {
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
     if (index == _currentvalue.floor()) {
       var currScale = 1 - (_currentvalue - index) * (1 - _scalFactor);
       var currTrans = _height * (1 - currScale) / 2;
@@ -281,7 +280,7 @@ class _MainPageBodyState extends State<MainPageBody> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                      AppConstant.BASE_URL + '/uploads/' + popularProduct.img!),
+                      '${AppConstant.BASE_URL}/uploads/${popularProduct.img!}'),
                 ),
               ),
             ),
@@ -298,7 +297,7 @@ class _MainPageBodyState extends State<MainPageBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Demensions.radius30),
                 color: Colors.white,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0xFFe8e8e8),
                     blurRadius: 5,

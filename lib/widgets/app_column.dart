@@ -32,21 +32,21 @@ class AppColumn extends StatelessWidget {
             Wrap(
               children: List.generate(
                   5,
-                      (index) => Icon(
+                      (index) => const Icon(
                     Icons.star,
                     color: AppColors.maincolor,
                     size: 15,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SmallText(text: rate.toString()),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SmallText(text: '1348'),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SmallText(text: 'Review'),
@@ -55,7 +55,7 @@ class AppColumn extends StatelessWidget {
         SizedBox(
           height: Demensions.height15,
         ),
-        Row(
+        const Row(
           children: [
             IconwithText(
                 icon: Icons.circle_sharp,

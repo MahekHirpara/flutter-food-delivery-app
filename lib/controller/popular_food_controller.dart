@@ -36,10 +36,10 @@ class PopulerFoodController extends GetxController {
   void setQuantity(bool isIncrement){
     if(isIncrement){
       _quantity = checkQuantity(_quantity + 1);
-      print('quantity '+_quantity.toString());
+      print('quantity $_quantity');
     }else{
       _quantity = checkQuantity(_quantity - 1);
-      print('quantity '+_quantity.toString());
+      print('quantity $_quantity');
     }
     update();
   }

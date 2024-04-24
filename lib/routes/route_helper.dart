@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:food_app/screen/cart/cart_page.dart';
 import 'package:food_app/screen/food/popular_food_page.dart';
 import 'package:food_app/screen/food/recommened_food_page.dart';
 import 'package:food_app/screen/home/home_page.dart';
-import 'package:food_app/screen/home/main_home_page.dart';
 import 'package:food_app/screen/splashscreen/splach_screen.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
 class RouteHelper {
   static const String spalshScreen = '/Splash-screen';
   static const String initial = '/';
@@ -15,16 +11,16 @@ class RouteHelper {
   static const String recommendedFood = '/recommended-food';
   static const String cartpage = '/cart-page';
 
-  static String getSplashScreen() => '$spalshScreen';
-  static String getInitial() => '$initial';
+  static String getSplashScreen() => spalshScreen;
+  static String getInitial() => initial;
   static String getPopularFood(int PageId,String page) => '$popularFood?pageId=$PageId&page=$page';
   static String getRecommendedFood(int recommedPageID,String page) =>
       '$recommendedFood?recommedPageID=$recommedPageID&page=$page';
-  static String getCartPage()=> '$cartpage';
+  static String getCartPage()=> cartpage;
 
   static List<GetPage> routes = [
-    GetPage(name: spalshScreen, page: ()=> SplashScreen()),
-    GetPage(name: initial, page: () => HomePage()),
+    GetPage(name: spalshScreen, page: ()=> const SplashScreen()),
+    GetPage(name: initial, page: () => const HomePage()),
     GetPage(
       name: popularFood,
       page: () {
@@ -43,7 +39,7 @@ class RouteHelper {
       },
       transition: Transition.circularReveal,
     ),
-    GetPage(name: cartpage, page: () => CartPage(),
+    GetPage(name: cartpage, page: () => const CartPage(),
     transition: Transition.circularReveal),
   ];
 }

@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 class FoodDetails extends StatelessWidget {
   final int pageId;
   final String page;
-  const FoodDetails({Key? key, required this.pageId,required this.page}) : super(key: key);
+  const FoodDetails({super.key, required this.pageId,required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class FoodDetails extends StatelessWidget {
                         Get.toNamed(RouteHelper.getInitial());
                       }
                     },
-                    child: AppIcon(icon: Icons.clear),
+                    child: const AppIcon(icon: Icons.clear),
                   ),
                   GetBuilder<PopulerFoodController>(builder: (controller) {
                     return GestureDetector(
@@ -55,9 +55,9 @@ class FoodDetails extends StatelessWidget {
                       child: Stack(
 
                         children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          const AppIcon(icon: Icons.shopping_cart_outlined),
                           Get.find<PopulerFoodController>().totalQuantity >= 1
-                              ? Positioned(
+                              ? const Positioned(
                             right: 0,
                             top: 0,
                             child:  AppIcon(
@@ -89,7 +89,7 @@ class FoodDetails extends StatelessWidget {
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                AppConstant.BASE_URL + '/uploads/' + product.img,
+                '${AppConstant.BASE_URL}/uploads/' + product.img,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -160,9 +160,7 @@ class FoodDetails extends StatelessWidget {
                       ),
                     ),
                     BigText(
-                      text: '\$ ${product.price} ' +
-                          'X' +
-                          recommendedProduct.cartItems.toString(),
+                      text: '\$ ${product.price} X${recommendedProduct.cartItems}',
                       color: AppColors.mainBlackColor,
                       size: Demensions.font26,
                     ),
@@ -227,16 +225,16 @@ class FoodDetails extends StatelessWidget {
                               bottom: Demensions.height20,
                               left: Demensions.width20,
                               right: Demensions.width20),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(Demensions.radius25),
+                            color: AppColors.maincolor,
+                          ),
                           child: Text(
                             '\$ ${product.price!} Add to cart',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: Demensions.font20),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius:
-                            BorderRadius.circular(Demensions.radius25),
-                            color: AppColors.maincolor,
                           ),
                         ),
                       ),

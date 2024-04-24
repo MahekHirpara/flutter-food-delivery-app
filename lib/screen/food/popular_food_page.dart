@@ -16,7 +16,7 @@ class PopulerFoodPage extends StatelessWidget {
   final int pageID;
   final String page;
 
-  const PopulerFoodPage({Key? key, required this.pageID,required this.page}) : super(key: key);
+  const PopulerFoodPage({super.key, required this.pageID,required this.page});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class PopulerFoodPage extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      AppConstant.BASE_URL + '/uploads/' + product.img,
+                      '${AppConstant.BASE_URL}/uploads/' + product.img,
                     ),
                   ),
                 ),
@@ -59,7 +59,7 @@ class PopulerFoodPage extends StatelessWidget {
                           Get.toNamed(RouteHelper.getInitial());
                         }
                       },
-                      child: AppIcon(icon: Icons.arrow_back_ios)),
+                      child: const AppIcon(icon: Icons.arrow_back_ios)),
                   GetBuilder<PopulerFoodController>(builder: (controller) {
                     return GestureDetector(
                       onTap: (){
@@ -69,10 +69,10 @@ class PopulerFoodPage extends StatelessWidget {
 
                         children: [
 
-                            AppIcon(icon: Icons.shopping_cart),
+                            const AppIcon(icon: Icons.shopping_cart),
 
                           Get.find<PopulerFoodController>().totalQuantity >= 1
-                              ? Positioned(
+                              ? const Positioned(
                             right: 0,
                             top: 0,
                             child: AppIcon(
@@ -218,6 +218,11 @@ class PopulerFoodPage extends StatelessWidget {
                           bottom: Demensions.height20,
                           left: Demensions.width20,
                           right: Demensions.width20),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.circular(Demensions.radius25),
+                        color: AppColors.maincolor,
+                      ),
                       child: GestureDetector(
                         onTap: () {
                           popularProduct.addIteams(product);
@@ -226,11 +231,6 @@ class PopulerFoodPage extends StatelessWidget {
                           text: '\$ ${product.price!} Add to cart',
                           color: Colors.white,
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.circular(Demensions.radius25),
-                        color: AppColors.maincolor,
                       ),
                     ),
                   ],

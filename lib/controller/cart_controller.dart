@@ -31,10 +31,7 @@ class CartController extends GetxController {
         );
       });
       _items.forEach((key, value) {
-        print("id is " +
-            value.id.toString() +
-            " Quantity is " +
-            value.quantity.toString());
+        print("id is ${value.id} Quantity is ${value.quantity}");
       });
       if(totalQuantity<=0){
         _items.remove(product.id);
@@ -56,10 +53,7 @@ class CartController extends GetxController {
           );
         });
         items.forEach((key, value) {
-          print("id is " +
-              value.id.toString() +
-              " Quantity is " +
-              value.quantity.toString());
+          print("id is ${value.id} Quantity is ${value.quantity}");
         });
       }else{
         Get.snackbar('Add Items', 'add Items',

@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/controller/cart_controller.dart';
 import 'package:food_app/controller/popular_food_controller.dart';
 import 'package:food_app/controller/recommended_food_controller.dart';
 import 'package:food_app/routes/route_helper.dart';
@@ -25,12 +23,13 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     await  Get.find<RecommadedFoodController>().recommenedProductList();
   }
 
+  @override
   void initState(){
     super.initState();
     _lodeResource();
-    controller = AnimationController(vsync: this,duration: Duration(seconds: 3))..forward();
+    controller = AnimationController(vsync: this,duration: const Duration(seconds: 3))..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-    Timer(Duration(seconds: 4),()=>Get.offNamed(RouteHelper.getInitial()));
+    Timer(const Duration(seconds: 4),()=>Get.offNamed(RouteHelper.getInitial()));
   }
   @override
   Widget build(BuildContext context) {

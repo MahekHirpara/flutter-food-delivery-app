@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/controller/cart_controller.dart';
 import 'package:food_app/controller/popular_food_controller.dart';
 import 'package:food_app/controller/recommended_food_controller.dart';
 import 'package:food_app/routes/route_helper.dart';
-import 'package:food_app/screen/home/main_home_page.dart';
 import 'package:food_app/utils/app_const.dart';
 import 'package:food_app/utils/colors.dart';
 import 'package:food_app/utils/deminstional.dart';
@@ -15,7 +13,7 @@ import 'package:get/get.dart';
 
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +73,9 @@ class CartPage extends StatelessWidget {
 
                 builder: (cartController) {
 
-                  var _cartList = cartController.getItems;
+                  var cartList = cartController.getItems;
                   return ListView.builder(
-                    itemCount: _cartList.length,
+                    itemCount: cartList.length,
                     itemBuilder: (context, index) {
 
                       return Container(
@@ -87,11 +85,11 @@ class CartPage extends StatelessWidget {
                             //image
                             GestureDetector(
                               onTap: (){
-                                var popularListIndex = Get.find<PopulerFoodController>().populerFoodList.indexOf(_cartList[index].product!);
+                                var popularListIndex = Get.find<PopulerFoodController>().populerFoodList.indexOf(cartList[index].product!);
                                 if(popularListIndex>=0){
                                   Get.toNamed(RouteHelper.getPopularFood(popularListIndex,'cartpage'));
                                 }else{
-                                  var recommendedListIndex = Get.find<RecommadedFoodController>().recomededproductList.indexOf(_cartList[index].product!);
+                                  var recommendedListIndex = Get.find<RecommadedFoodController>().recomededproductList.indexOf(cartList[index].product!);
                                   Get.toNamed(RouteHelper.getRecommendedFood(recommendedListIndex,'cartpage'));
                                 }
                       },
@@ -104,9 +102,7 @@ class CartPage extends StatelessWidget {
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: NetworkImage(
-                                      AppConstant.BASE_URL +
-                                          '/uploads/' +
-                                          cartController.getItems[index].img!,
+                                      '${AppConstant.BASE_URL}/uploads/${cartController.getItems[index].img!}',
                                     ),
                                   ),
                                 ),
@@ -126,7 +122,7 @@ class CartPage extends StatelessWidget {
                                     Radius.circular(Demensions.radius15),
                                   ),
                                   color: Colors.white,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Color(0xFFe8e8e8),
                                       blurRadius: 5,
@@ -148,10 +144,8 @@ class CartPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                       children: [
                                         BigText(
-                                          text: '\$' +
-                                              cartController
-                                                  .getItems[index].price!
-                                                  .toString(),
+                                          text: '\$${cartController
+                                                  .getItems[index].price!}',
                                           color: Colors.red,
                                         ),
                                         Container(
@@ -171,7 +165,7 @@ class CartPage extends StatelessWidget {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                 cartController.addIteams(_cartList[index].product!, -1);
+                                                 cartController.addIteams(cartList[index].product!, -1);
                                                 },
                                                 child: Icon(
                                                   Icons.remove,
@@ -182,7 +176,7 @@ class CartPage extends StatelessWidget {
                                                 width: Demensions.width10,
                                               ),
                                               Text(
-                                                _cartList[index].quantity.toString(),
+                                                cartList[index].quantity.toString(),
                                                 style: TextStyle(
                                                     fontSize:
                                                     Demensions.font20),
@@ -192,7 +186,7 @@ class CartPage extends StatelessWidget {
                                               ),
                                               GestureDetector(
                                                   onTap: () {
-                                                    cartController.addIteams(_cartList[index].product!, 1);
+                                                    cartController.addIteams(cartList[index].product!, 1);
                                                   },
                                                   child: Icon(
                                                     Icons.add,
@@ -242,7 +236,7 @@ class CartPage extends StatelessWidget {
                     BorderRadius.circular(Demensions.radius25),
                     color: Colors.white,
                   ),
-                  child: BigText(text: '\$'+cartcontroller.totalAmount.toString() ,),
+                  child: BigText(text: '\$${cartcontroller.totalAmount}' ,),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -256,16 +250,16 @@ class CartPage extends StatelessWidget {
                         bottom: Demensions.height20,
                         left: Demensions.width20,
                         right: Demensions.width20),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(Demensions.radius25),
+                      color: AppColors.maincolor,
+                    ),
                     child: Text(
                       'Check out',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: Demensions.font20),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius:
-                      BorderRadius.circular(Demensions.radius25),
-                      color: AppColors.maincolor,
                     ),
                   ),
                 ),

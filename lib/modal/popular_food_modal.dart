@@ -10,10 +10,10 @@ class Product {
         required typeId,
         required offset,
         required products}) {
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._products = products;
+    _totalSize = totalSize;
+    _typeId = typeId;
+    _offset = offset;
+    _products = products;
   }
 
   Product.fromJson(Map<String, dynamic> json) {
@@ -23,7 +23,7 @@ class Product {
     if (json['products'] != null) {
       _products = <ProductModal>[];
       json['products'].forEach((v) {
-        _products!.add(new ProductModal.fromJson(v));
+        _products.add(ProductModal.fromJson(v));
       });
     }
   }
@@ -68,16 +68,16 @@ class ProductModal {
 
   Map<String, dynamic> toJson(){
     return{
-      "id": this.id,
-      "name" : this.name,
+      "id": id,
+      "name" : name,
 
-      "price" : this.price,
+      "price" : price,
 
-      "img" : this.img,
-    "location" : this.location,
-    "createdAt" : this.createdAt,
-    "updatedAt" : this.updatedAt,
-    "typeId" : this.typeId,
+      "img" : img,
+    "location" : location,
+    "createdAt" : createdAt,
+    "updatedAt" : updatedAt,
+    "typeId" : typeId,
 
     };
   }
