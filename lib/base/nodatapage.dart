@@ -7,16 +7,19 @@ class NoPageData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(
-          imgPath,
-          height: MediaQuery.sizeOf(context).height*0.22,
-          width: MediaQuery.sizeOf(context).width*0.22,
-        ),
-        SizedBox(height: Demensions.height10 ,),
-        Text(text,style: TextStyle(fontSize:MediaQuery.sizeOf(context).height*0.0175, color: Theme.of(context).disabledColor),),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            imgPath,
+            height: MediaQuery.sizeOf(context).height*0.22,
+            width: MediaQuery.sizeOf(context).width*0.22,
+          ),
+          SizedBox(height: Demensions.height10 ,),
+          Text(text,style: TextStyle(fontSize:MediaQuery.sizeOf(context).height*0.0175, color: Theme.of(context).disabledColor),),
+        ],
+      ),
     );
   }
 }

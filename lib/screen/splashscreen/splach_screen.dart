@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         children: [
           ScaleTransition(scale: animation,
             child: Center(child: Image.asset('assets/images/Good Food Logo.jpg',width: Demensions.spashScreenImage,),),),
-          // Center(child: Image.asset('assets/images/logo2.jpg',width: 250,)),
+
         ],
       ),
     );
