@@ -90,9 +90,15 @@ class CartPage extends StatelessWidget {
                                   Get.toNamed(RouteHelper.getPopularFood(popularListIndex,'cartpage'));
                                 }else{
                                   var recommendedListIndex = Get.find<RecommadedFoodController>().recomededproductList.indexOf(cartList[index].product!);
-                                  Get.toNamed(RouteHelper.getRecommendedFood(recommendedListIndex,'cartpage'));
+                                  if(recommendedListIndex<0){
+                                    Get.snackbar('History Product', 'Product review is not for History product',
+                                        backgroundColor: Colors.red);
+                                  }else{
+                                    Get.toNamed(RouteHelper.getRecommendedFood(recommendedListIndex,'cartpage'));
+                                  }
+
                                 }
-                      },
+                              },
                               child: Container(
                                 height: Demensions.imageContainer,
                                 width: Demensions.imageContainer,
