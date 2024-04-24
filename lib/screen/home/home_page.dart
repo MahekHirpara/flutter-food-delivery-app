@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screen/cart/cart_history.dart';
 import 'package:food_app/screen/home/main_home_page.dart';
 import 'package:food_app/utils/colors.dart';
 
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   List page=[
     const MainFoodPage(),
     Container(child: const Center(child: Text('next page'),),),
-    Container(child: const Center(child: Text('next next page'),),),
+    CartHistory(),
     Container(child: const Center(child: Text('next next next page'),),)
   ];
   void onTapNav(int index){

@@ -55,4 +55,7 @@ class Demensions {
 
 // spash screen
  static double spashScreenImage = screenHeight/2.16;
+
+ //cart images
+static double cartHistoryImages = screenHeight/10.8;
 }

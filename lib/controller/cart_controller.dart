@@ -123,7 +123,7 @@ class CartController extends GetxController {
     }
   }
 
-  void getCartHistory(){
+  void addCartHistory(){
     cartRepo.addtoCartHistory();
     clear();
   }
@@ -132,5 +132,9 @@ class CartController extends GetxController {
     _items={};
     update();
   }
+ List<CartModal> getCardHistory(){
+   return  cartRepo.getCartHistory();
+ }
+
 }
 

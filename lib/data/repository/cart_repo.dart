@@ -15,15 +15,17 @@ class CartRepo {
   void addToCart(List<CartModal> cartList){
     // sharedPreferences.remove(AppConstant.CART_LIST);
     // sharedPreferences.remove(AppConstant.CART_HISTORY_LIST);
+    var time = DateTime.now().toString();
     cart=[];
     
-    for (var element in cartList) { 
-      continue;
+    for (var element in cartList) {
+      element.time =time;
+      cart.add(jsonEncode(element));
     }
     
     sharedPreferences.setStringList(AppConstant.CART_LIST, cart);
     // print(sharedPreferences.getStringList(AppConstant.CART_LIST));
-    getCartList();
+    // getCartList();
   }
 
   List<CartModal> getCartList(){
