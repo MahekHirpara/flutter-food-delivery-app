@@ -3,6 +3,7 @@ import 'package:food_app/controller/cart_controller.dart';
 import 'package:food_app/controller/popular_food_controller.dart';
 import 'package:food_app/controller/recommended_food_controller.dart';
 import 'package:food_app/helper/dependencies.dart' as dep;
+import 'package:food_app/screen/auth/sing_up.dart';
 import 'package:get/get.dart';
 
 import 'routes/route_helper.dart';
@@ -21,9 +22,10 @@ class MyApp extends StatelessWidget {
     return GetBuilder<PopulerFoodController>(builder: (_){
       return GetBuilder<RecommadedFoodController>(builder: (_){
         return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: RouteHelper.getSplashScreen(),
-          getPages: RouteHelper.routes,
+          // debugShowCheckedModeBanner: false,
+          // initialRoute: RouteHelper.getSplashScreen(),
+          // getPages: RouteHelper.routes,
+          home: SingUpPage(),
         );
       });
     });

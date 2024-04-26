@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   late AnimationController controller;
   late Animation<double> animation;
 
-  void _lodeResource() async{
+  Future<void> _lodeResource() async{
     await Get.find<PopulerFoodController>().PopulerFoodList();
     await  Get.find<RecommadedFoodController>().recommenedProductList();
   }
