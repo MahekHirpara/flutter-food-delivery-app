@@ -49,6 +49,7 @@ class _MainPageBodyState extends State<MainPageBody> {
       children: [
         GetBuilder<PopulerFoodController>(
           builder: (popularProduct) {
+            print(popularProduct.populerFoodList);
             return popularProduct.isLoaded
                 ? SizedBox(
               height: Demensions.pageContainer,

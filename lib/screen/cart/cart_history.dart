@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/base/nodatapage.dart';
 import 'package:food_app/controller/cart_controller.dart';
 import 'package:food_app/modal/cart_modal.dart';
 import 'package:food_app/routes/route_helper.dart';
@@ -42,6 +43,18 @@ class CartHistory extends StatelessWidget {
 
     List<int> itemsPerOrder = cartItemsPerOrderToList();
     var listCounter = 0;
+
+    Widget timeWidget(int index){
+      var outputDate = DateTime.now().toString();
+      if(index<cartHistory.length){
+        DateTime parseDate = DateFormat('yyyy-MM-dd HH:mm:ss').parse(cartHistory[listCounter].time!);
+        var inputDate = DateTime.parse(parseDate.toString());
+        var outputformate = DateFormat('MM/dd/yyyy HH:mm a');
+        outputDate = outputformate.format(inputDate);
+
+      }
+      return BigText(text: outputDate);
+    }
     return Scaffold(
 
       body: Column(
@@ -59,12 +72,13 @@ class CartHistory extends StatelessWidget {
              ],
            ),
          ),
-          Expanded(
-            child: Container(
-              margin: EdgeInsets.only(top: Demensions.height20,left: Demensions.width20,right: Demensions.width20),
+          GetBuilder<CartController>(builder: (cartcontroller){
+            return cartcontroller.getCardHistory().length>0 ?  Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: Demensions.height20,left: Demensions.width20,right: Demensions.width20),
 
-              child: MediaQuery.removePadding(
-                removeTop: true,
+                child: MediaQuery.removePadding(
+                  removeTop: true,
                   context: context,
                   child: ListView(
                     children: [
@@ -74,14 +88,7 @@ class CartHistory extends StatelessWidget {
                           child:Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ((){
-                                DateTime parseDate = DateFormat('yyyy-MM-dd HH:mm:ss').parse(cartHistory[listCounter].time!);
-                                var inputDate = DateTime.parse(parseDate.toString());
-                                var outputformate = DateFormat('MM/dd/yyyy HH:mm a');
-                                var outputDate = outputformate.format(inputDate);
-                               return BigText(text: outputDate);
-                              }()),
-
+                              timeWidget(listCounter),
                               SizedBox(height: Demensions.height5,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,26 +119,26 @@ class CartHistory extends StatelessWidget {
                                   Container(
                                     height: Demensions.cartHistoryImages,
                                     child: Column(
-                                       crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment: CrossAxisAlignment.end,
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         SmallText(text: 'Total',color: AppColors.titleColor,),
                                         BigText(text: itemsPerOrder[i].toString()+' Items',color: AppColors.titleColor,),
                                         GestureDetector(
                                           onTap: (){
-                                             var orderTime = cartOrederTimeToList();
-                                             Map<int,CartModal> moreOrder={};
+                                            var orderTime = cartOrederTimeToList();
+                                            Map<int,CartModal> moreOrder={};
 
-                                             for(int j=0;j<cartHistory.length;j++){
-                                               if(cartHistory[j].time == orderTime[i]){
-                                                 moreOrder.putIfAbsent(cartHistory[j].id!, ()  =>
-                                                   CartModal.fromJson(jsonDecode(jsonEncode(cartHistory[j]))),
-                                                 );
-                                               }
-                                             }
-                                             Get.find<CartController>().setItems = moreOrder;
-                                             Get.find<CartController>().addtoCart();
-                                             Get.toNamed(RouteHelper.getCartPage());
+                                            for(int j=0;j<cartHistory.length;j++){
+                                              if(cartHistory[j].time == orderTime[i]){
+                                                moreOrder.putIfAbsent(cartHistory[j].id!, ()  =>
+                                                    CartModal.fromJson(jsonDecode(jsonEncode(cartHistory[j]))),
+                                                );
+                                              }
+                                            }
+                                            Get.find<CartController>().setItems = moreOrder;
+                                            Get.find<CartController>().addtoCart();
+                                            Get.toNamed(RouteHelper.getCartPage());
                                           },
                                           child: Container(
                                             padding: EdgeInsets.all(Demensions.height5),
@@ -154,10 +161,12 @@ class CartHistory extends StatelessWidget {
                         ),
                     ],
                   ),
-              ),
+                ),
 
-            ),
-          )
+              ),
+            ) : NoPageData(text: 'No History Yet');
+          }),
+
         ],
       ),
     );

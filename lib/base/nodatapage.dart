@@ -10,13 +10,14 @@ class NoPageData extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
             imgPath,
             height: MediaQuery.sizeOf(context).height*0.22,
             width: MediaQuery.sizeOf(context).width*0.22,
           ),
-          SizedBox(height: Demensions.height10 ,),
+          SizedBox(height: Demensions.height5/2 ,),
           Text(text,style: TextStyle(fontSize:MediaQuery.sizeOf(context).height*0.0175, color: Theme.of(context).disabledColor),),
         ],
       ),
