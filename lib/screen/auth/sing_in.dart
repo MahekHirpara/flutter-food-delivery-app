@@ -5,8 +5,8 @@ import 'package:food_app/utils/deminstional.dart';
 import 'package:food_app/widgets/TextFieldWidget.dart';
 import 'package:food_app/widgets/big_text.dart';
 import 'package:get/get.dart';
-class SingUpPage extends StatelessWidget {
-  const SingUpPage({super.key});
+class SingInPage extends StatelessWidget {
+  const SingInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class SingUpPage extends StatelessWidget {
                   radius: 80,
                   backgroundColor: Colors.white,
                   backgroundImage: AssetImage(
-                    'assets/images/Good Food Logo.jpg'
+                      'assets/images/Good Food Logo.jpg'
                   ),
                 ),
               ),
@@ -71,12 +71,12 @@ class SingUpPage extends StatelessWidget {
             //login text
             RichText(
               text: TextSpan(
-                recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
-                text: 'Have already Account?',
-                style: TextStyle(
-                  fontSize: Demensions.font20,
-                  color: Colors.grey[500],
-                )
+                  recognizer: TapGestureRecognizer()..onTap=()=>Get.back(),
+                  text: 'Have already Account?',
+                  style: TextStyle(
+                    fontSize: Demensions.font20,
+                    color: Colors.grey[500],
+                  )
               ),
             ),
             SizedBox(height: Demensions.screenHeight*0.05,),
