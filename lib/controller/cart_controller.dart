@@ -18,7 +18,6 @@ class CartController extends GetxController {
     if (_items.containsKey(product.id!)) {
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity!+quantity;
-        print('updated');
         return CartModal(
           id: value.id,
           name: value.name,
@@ -30,9 +29,6 @@ class CartController extends GetxController {
           product:product,
         );
       });
-      _items.forEach((key, value) {
-        print("id is ${value.id} Quantity is ${value.quantity}");
-      });
       if(totalQuantity<=0){
         _items.remove(product.id);
       }
@@ -40,7 +36,7 @@ class CartController extends GetxController {
     } else {
       if(quantity>0){
         _items.putIfAbsent(product.id!, () {
-          print('added');
+
           return CartModal(
             id: product.id,
             name: product.name,
@@ -52,9 +48,7 @@ class CartController extends GetxController {
             product:product,
           );
         });
-        items.forEach((key, value) {
-          print("id is ${value.id} Quantity is ${value.quantity}");
-        });
+
       }else{
         Get.snackbar('Add Items', 'add Items',
             backgroundColor: AppColors.maincolor);
@@ -143,6 +137,11 @@ class CartController extends GetxController {
 
   void addtoCart(){
     cartRepo.addToCart(getItems);
+    update();
+  }
+
+  void clearCartHistory(){
+    cartRepo.clearCartHistory();
     update();
   }
 }

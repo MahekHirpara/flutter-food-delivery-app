@@ -26,7 +26,6 @@ class PopulerFoodController extends GetxController {
   Future<void> PopulerFoodList() async {
     Response response = await populerFoodRepo.populerFoodList();
     if (response.statusCode == 200) {
-      print('in populaer food list');
       _populerFoodList=[];
       _populerFoodList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
@@ -34,16 +33,14 @@ class PopulerFoodController extends GetxController {
     }else{
       print('Error: ${response.statusCode}');
     }
-    print(_populerFoodList);
+
   }
 
   void setQuantity(bool isIncrement){
     if(isIncrement){
       _quantity = checkQuantity(_quantity + 1);
-      print('quantity $_quantity');
     }else{
       _quantity = checkQuantity(_quantity - 1);
-      print('quantity $_quantity');
     }
     update();
   }

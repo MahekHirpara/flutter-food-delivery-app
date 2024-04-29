@@ -16,7 +16,6 @@ class RecommadedFoodController extends GetxController {
   Future<void> recommenedProductList() async {
     Response response = await recommendedFoodRepo.getRecommenedList();
     if (response.statusCode == 200) {
-      print('in recommanded food list');
       _recomededproductList = [];
       _recomededproductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;

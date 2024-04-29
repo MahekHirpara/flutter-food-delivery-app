@@ -4,12 +4,15 @@ import 'package:food_app/screen/food/recommened_food_page.dart';
 import 'package:food_app/screen/home/home_page.dart';
 import 'package:food_app/screen/splashscreen/splach_screen.dart';
 import 'package:get/get.dart';
+
+import '../screen/auth/sing_in.dart';
 class RouteHelper {
   static const String spalshScreen = '/Splash-screen';
   static const String initial = '/';
   static const String popularFood = '/popular-food';
   static const String recommendedFood = '/recommended-food';
   static const String cartpage = '/cart-page';
+  static const String singin = '/sing-in';
 
   static String getSplashScreen() => spalshScreen;
   static String getInitial() => initial;
@@ -17,10 +20,14 @@ class RouteHelper {
   static String getRecommendedFood(int recommedPageID,String page) =>
       '$recommendedFood?recommedPageID=$recommedPageID&page=$page';
   static String getCartPage()=> cartpage;
+  static String getSingIn()=> singin;
 
   static List<GetPage> routes = [
+    //spash Screen
     GetPage(name: spalshScreen, page: ()=> const SplashScreen()),
+    //home
     GetPage(name: initial, page: () => const HomePage()),
+    //popularfood
     GetPage(
       name: popularFood,
       page: () {
@@ -30,6 +37,7 @@ class RouteHelper {
       },
       transition: Transition.circularReveal,
     ),
+    //recommended
     GetPage(
       name: recommendedFood,
       page: () {
@@ -39,7 +47,10 @@ class RouteHelper {
       },
       transition: Transition.circularReveal,
     ),
+    //cart
     GetPage(name: cartpage, page: () => const CartPage(),
     transition: Transition.circularReveal),
+    //SingIn
+    GetPage(name: singin, page: () => SingInPage(),transition: Transition.circularReveal),
   ];
 }

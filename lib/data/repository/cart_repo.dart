@@ -32,7 +32,6 @@ class CartRepo {
     List<String> carts=[];
     if(sharedPreferences.containsKey(AppConstant.CART_LIST)){
        carts = sharedPreferences.getStringList(AppConstant.CART_LIST)!;
-       print('insid get cart list$carts');
     }
 
     List<CartModal> cartList=[];
@@ -62,16 +61,20 @@ class CartRepo {
       cartHistory= sharedPreferences.getStringList(AppConstant.CART_HISTORY_LIST)!;
     }
     for(int i=0;i<cart.length;i++){
-      print('History List${cart[i]}');
       cartHistory.add(cart[i]);
     }
     removeCart();
     sharedPreferences.setStringList(AppConstant.CART_HISTORY_LIST, cartHistory);
-    print('history cart list legth${getCartHistory().length}');
   }
 
   void removeCart(){
     cart=[];
     sharedPreferences.remove(AppConstant.CART_LIST);
+  }
+
+  void clearCartHistory(){
+    removeCart();
+    cartHistory=[];
+    sharedPreferences.remove(AppConstant.CART_HISTORY_LIST);
   }
 }
